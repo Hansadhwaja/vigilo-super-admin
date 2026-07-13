@@ -7,9 +7,15 @@ type AuthState = {
   user: User | null
 }
 
+const getStoredUser = (): User | null => {
+  const user = localStorage.getItem("user")
+
+  return user ? JSON.parse(user) : null
+}
+
 const initialState: AuthState = {
-  token: null,
-  user: null,
+  token: localStorage.getItem("token"),
+  user: getStoredUser(),
 }
 
 const authSlice = createSlice({

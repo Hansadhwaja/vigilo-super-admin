@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils"
 
 import { LogOut } from "lucide-react"
 import { Link, useLocation } from "react-router"
+import LogoutConfirmModal from "../Auth/Modal/LogoutModal"
 
 const DashboardSidebar = () => {
   const { pathname } = useLocation()
@@ -79,10 +80,12 @@ const DashboardSidebar = () => {
       <SidebarFooter className="border-t border-sidebar-border p-3">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton className="h-11 rounded-xl text-destructive hover:bg-destructive/10 hover:text-destructive">
-              <LogOut className="size-5" />
-              <span className="font-medium">Logout</span>
-            </SidebarMenuButton>
+            <LogoutConfirmModal>
+              <SidebarMenuButton className="h-11 rounded-xl text-destructive hover:bg-destructive/10 hover:text-destructive">
+                <LogOut className="size-5" />
+                <span className="font-medium">Logout</span>
+              </SidebarMenuButton>
+            </LogoutConfirmModal>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

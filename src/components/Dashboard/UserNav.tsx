@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut, Settings, User } from "lucide-react"
+import LogoutConfirmModal from "../Auth/Modal/LogoutModal"
 
 export function UserNav() {
   return (
@@ -44,10 +45,15 @@ export function UserNav() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="text-destructive">
-          <LogOut className="mr-2 h-4 w-4" />
-          Logout
-        </DropdownMenuItem>
+        <LogoutConfirmModal>
+          <DropdownMenuItem
+            className="text-destructive focus:text-destructive"
+            onSelect={(e) => e.preventDefault()}
+          >
+            <LogOut />
+            Logout
+          </DropdownMenuItem>
+        </LogoutConfirmModal>
       </DropdownMenuContent>
     </DropdownMenu>
   )

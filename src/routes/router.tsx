@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router"
 
 import DashboardLayout from "@/layouts/DashboardLayout"
+
 import LoginPage from "@/pages/auth/LoginPage"
 import DashboardPage from "@/pages/dashboard"
 import TenantsPage from "@/pages/tenants"
@@ -11,50 +12,62 @@ import SupportPage from "@/pages/support"
 import CMSPage from "@/pages/cms"
 import TeamPage from "@/pages/team"
 import SettingsPage from "@/pages/settings"
+import GuestRoute from "@/components/Auth/GuestRoute"
+import ProtectedRoute from "@/components/Auth/ProtectedRoute"
 
 export const router = createBrowserRouter([
   {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    element: <DashboardLayout />,
+    element: <GuestRoute />,
     children: [
       {
-        path: "/",
-        element: <DashboardPage />,
+        path: "/login",
+        element: <LoginPage />,
       },
+    ],
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
       {
-        path: "/tenants",
-        element: <TenantsPage />,
-      },
-      {
-        path: "/plans",
-        element: <PlansPage />,
-      },
-      {
-        path: "/billing",
-        element: <BillingPage />,
-      },
-      {
-        path: "/analytics",
-        element: <AnalyticsPage />,
-      },
-      {
-        path: "/support",
-        element: <SupportPage />,
-      },
-      {
-        path: "/cms",
-        element: <CMSPage />,
-      },
-      {
-        path: "/team",
-        element: <TeamPage />,
-      },
-      {
-        path: "/settings",
-        element: <SettingsPage />,
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: "/",
+            element: <DashboardPage />,
+          },
+          {
+            path: "/tenants",
+            element: <TenantsPage />,
+          },
+          {
+            path: "/plans",
+            element: <PlansPage />,
+          },
+          {
+            path: "/billing",
+            element: <BillingPage />,
+          },
+          {
+            path: "/analytics",
+            element: <AnalyticsPage />,
+          },
+          {
+            path: "/support",
+            element: <SupportPage />,
+          },
+          {
+            path: "/cms",
+            element: <CMSPage />,
+          },
+          {
+            path: "/team",
+            element: <TeamPage />,
+          },
+          {
+            path: "/settings",
+            element: <SettingsPage />,
+          },
+        ],
       },
     ],
   },
