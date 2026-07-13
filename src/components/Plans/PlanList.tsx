@@ -1,4 +1,4 @@
-import React from "react"
+
 import PlanCard from "./PlanCard"
 import { plans } from "@/constants"
 
