@@ -1,5 +1,11 @@
-
-import type { Enquiry, Plan, TeamMember, Tenant, TopTenant, Transaction } from "@/types"
+import type {
+  Enquiry,
+  Plan,
+  TeamMember,
+  Tenant,
+  TopTenant,
+  Transaction,
+} from "@/types"
 import {
   LayoutDashboard,
   Users,
@@ -71,11 +77,11 @@ export const QUERY_KEYS = {
 export const tenants: Tenant[] = [
   {
     id: "tenant-1",
-    company: {
-      avatar: "https://i.pravatar.cc/150?img=1",
-      name: "Acme Security",
-      email: "admin@acme.com",
-    },
+    avatar: "https://i.pravatar.cc/150?img=1",
+    name: "Acme Security",
+    email: "admin@acme.com",
+    mobile: "+1 202-555-0147",
+    address: "120 Market Street, San Francisco, CA",
     subdomain: "acme",
     plan: "Enterprise",
     status: "Active",
@@ -88,11 +94,11 @@ export const tenants: Tenant[] = [
   },
   {
     id: "tenant-2",
-    company: {
-      avatar: "https://i.pravatar.cc/150?img=2",
-      name: "Guardian Force",
-      email: "hello@guardian.com",
-    },
+    avatar: "https://i.pravatar.cc/150?img=2",
+    name: "Guardian Force",
+    email: "hello@guardian.com",
+    mobile: "+1 202-555-0182",
+    address: "45 Madison Avenue, New York, NY",
     subdomain: "guardian",
     plan: "Pro",
     status: "Active",
@@ -105,11 +111,11 @@ export const tenants: Tenant[] = [
   },
   {
     id: "tenant-3",
-    company: {
-      avatar: "https://i.pravatar.cc/150?img=3",
-      name: "Night Watch",
-      email: "support@nightwatch.com",
-    },
+    avatar: "https://i.pravatar.cc/150?img=3",
+    name: "Night Watch",
+    email: "support@nightwatch.com",
+    mobile: "+1 202-555-0128",
+    address: "890 Sunset Boulevard, Los Angeles, CA",
     subdomain: "nightwatch",
     plan: "Starter",
     status: "Inactive",
@@ -122,11 +128,11 @@ export const tenants: Tenant[] = [
   },
   {
     id: "tenant-4",
-    company: {
-      avatar: "https://i.pravatar.cc/150?img=4",
-      name: "ShieldOps",
-      email: "team@shieldops.com",
-    },
+    avatar: "https://i.pravatar.cc/150?img=4",
+    name: "ShieldOps",
+    email: "team@shieldops.com",
+    mobile: "+1 202-555-0164",
+    address: "310 Lake Shore Drive, Chicago, IL",
     subdomain: "shieldops",
     plan: "Business",
     status: "Active",
@@ -139,11 +145,11 @@ export const tenants: Tenant[] = [
   },
   {
     id: "tenant-5",
-    company: {
-      avatar: "https://i.pravatar.cc/150?img=5",
-      name: "Secure Patrol",
-      email: "contact@securepatrol.com",
-    },
+    avatar: "https://i.pravatar.cc/150?img=5",
+    name: "Secure Patrol",
+    email: "contact@securepatrol.com",
+    mobile: "+1 202-555-0196",
+    address: "78 Main Street, Austin, TX",
     subdomain: "secure",
     plan: "Pro",
     status: "Suspended",
@@ -628,4 +634,4 @@ export const systemUptimeData = [
   { label: "Jun 8", uptime: 99.98, target: 99.9 },
   { label: "Jun 9", uptime: 99.96, target: 99.9 },
   { label: "Jun 10", uptime: 99.99, target: 99.9 },
-];
+]

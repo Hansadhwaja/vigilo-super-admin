@@ -35,7 +35,7 @@ const AnalyticsFilters = () => {
       options: [
         { label: "All Tenants", value: "all" },
         ...tenants.map((tenant) => ({
-          label: tenant.company.name,
+          label: tenant.name,
           value: tenant.id,
         })),
       ],
