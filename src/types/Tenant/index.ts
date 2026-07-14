@@ -1,10 +1,10 @@
 export type Tenant = {
   id: string
-  company: {
-    avatar: string
-    name: string
-    email: string
-  }
+  avatar: string
+  name: string
+  email: string
+  mobile: string
+  address: string
   subdomain: string
   plan: string
   status: string

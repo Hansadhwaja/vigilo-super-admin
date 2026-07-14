@@ -1,7 +1,7 @@
-"use client";
+"use client"
 
 import DataFilters from "@/components/Common/Filter/DataFilters"
-import { Button } from "@/components/ui/button"
+import AddTenantModal from "../Modal/AddTenantModal"
 
 const TenantFilters = () => {
   const filters = [
@@ -44,7 +44,7 @@ const TenantFilters = () => {
         placeholder: "Search tenants...",
       }}
       filters={filters}
-      actions={<Button>Add Tenant</Button>}
+      actions={<AddTenantModal />}
     />
   )
 }

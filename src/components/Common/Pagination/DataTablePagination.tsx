@@ -1,25 +1,24 @@
-
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-} from "lucide-react";
+} from "lucide-react"
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import type { Table } from "@tanstack/react-table";
+} from "@/components/ui/select"
+import type { Table } from "@tanstack/react-table"
 
 interface DataTablePaginationProps<TData> {
-  table: Table<TData>;
-  pageSizeOptions?: number[];
-  showFirstLastButtons?: boolean;
+  table: Table<TData>
+  pageSizeOptions?: number[]
+  showFirstLastButtons?: boolean
 }
 
 export function DataTablePagination<TData>({
@@ -28,13 +27,11 @@ export function DataTablePagination<TData>({
   showFirstLastButtons = true,
 }: DataTablePaginationProps<TData>) {
   return (
-    <div className="flex gap-4 px-2 py-3 items-center justify-end">
+    <div className="flex items-center justify-end gap-4 px-2 py-3">
       <div className="flex flex-wrap items-center gap-4">
         {/* Rows per page */}
         <div className="flex items-center gap-2">
-          <p className="text-sm font-medium whitespace-nowrap">
-            Rows per page
-          </p>
+          <p className="text-sm font-medium whitespace-nowrap">Rows per page</p>
 
           <Select
             value={String(table.getState().pagination.pageSize)}
@@ -99,9 +96,7 @@ export function DataTablePagination<TData>({
               variant="outline"
               size="icon"
               className="hidden h-8 w-8 lg:flex"
-              onClick={() =>
-                table.setPageIndex(table.getPageCount() - 1)
-              }
+              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
               disabled={!table.getCanNextPage()}
             >
               <ChevronsRight className="h-4 w-4" />
@@ -110,5 +105,5 @@ export function DataTablePagination<TData>({
         </div>
       </div>
     </div>
-  );
+  )
 }

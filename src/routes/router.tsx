@@ -14,6 +14,7 @@ import TeamPage from "@/pages/team"
 import SettingsPage from "@/pages/settings"
 import GuestRoute from "@/components/Auth/GuestRoute"
 import ProtectedRoute from "@/components/Auth/ProtectedRoute"
+import TenantDetailsPage from "@/pages/tenants/TenantDetailsPage"
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,16 @@ export const router = createBrowserRouter([
           },
           {
             path: "/tenants",
-            element: <TenantsPage />,
+            children: [
+              {
+                index: true,
+                element: <TenantsPage />,
+              },
+              {
+                path: ":id",
+                element: <TenantDetailsPage />,
+              },
+            ],
           },
           {
             path: "/plans",
