@@ -1,23 +1,36 @@
-
-import { Check, MoreVertical, Pencil, Trash2 } from "lucide-react"
-
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 import { cn } from "@/lib/utils"
 import type { Plan } from "@/types"
+import PlanActions from "./PlanActions"
+import { Check } from "lucide-react"
+import { Switch } from "../ui/switch"
+import { toast } from "sonner"
+import { useTogglePlanStatusMutation } from "@/store/api/plans/plansApi"
 
 const PlanCard = ({ plan }: { plan: Plan }) => {
+  const [togglePlanStatus, { isLoading }] = useTogglePlanStatusMutation()
+
+  const handleToggle = async () => {
+    try {
+      const response = await togglePlanStatus(plan.id).unwrap()
+
+      toast.success(response.message || "Plan status changed successfully")
+    } catch (error) {
+      const message =
+        (error as { data?: { message?: string } })?.data?.message ||
+        "Failed to change plan status"
+
+      toast.error(message)
+    }
+  }
+
   return (
     <Card
       className={cn(
-        "relative transition-all duration-300 cursor-pointer",
+        "relative cursor-pointer transition-all duration-300",
         plan.popular
           ? "border-2 border-primary shadow-sm shadow-primary/20 hover:shadow-2xl hover:shadow-primary/80"
           : "hover:shadow-lg"
@@ -36,33 +49,15 @@ const PlanCard = ({ plan }: { plan: Plan }) => {
             </p>
           </div>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <MoreVertical className="size-4" />
-              </Button>
-            </DropdownMenuTrigger>
-
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <Pencil className="mr-2 size-4" />
-                Edit
-              </DropdownMenuItem>
-
-              <DropdownMenuItem className="text-destructive">
-                <Trash2 className="mr-2 size-4" />
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <PlanActions plan={plan} />
         </div>
 
         <div>
-          {plan.price ? (
+          {plan.amount ? (
             <div className="flex items-end gap-1">
-              <span className="text-4xl font-bold">${plan.price}</span>
+              <span className="text-4xl font-bold">${plan.amount}</span>
               <span className="pb-1 text-muted-foreground">
-                / {plan.billing}
+                / {plan.interval}
               </span>
             </div>
           ) : (
@@ -70,12 +65,17 @@ const PlanCard = ({ plan }: { plan: Plan }) => {
           )}
         </div>
 
-        <Badge
-          variant={plan.status === "Active" ? "default" : "secondary"}
-          className="w-fit"
-        >
-          {plan.status}
-        </Badge>
+        <div className="flex items-center gap-3">
+          <Switch
+            checked={plan.isActive}
+            onCheckedChange={handleToggle}
+            disabled={isLoading}
+          />
+
+          <span className="text-sm text-muted-foreground">
+            {plan.isActive ? "Active" : "Inactive"}
+          </span>
+        </div>
       </CardHeader>
 
       <CardContent>

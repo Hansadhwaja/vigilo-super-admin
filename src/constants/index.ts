@@ -1,6 +1,5 @@
 import type {
   Enquiry,
-  Plan,
   TeamMember,
   Tenant,
   TopTenant,
@@ -222,78 +221,6 @@ export const topTenants: TopTenant[] = [
     patrolRuns: 138,
     activeGuards: 22,
     alarms: 5,
-  },
-]
-
-export const plans: Plan[] = [
-  {
-    id: "1",
-    name: "Starter",
-    description: "Perfect for small teams",
-    price: 19,
-    billing: "month",
-    popular: false,
-    status: "Active",
-    tenants: 24,
-    features: [
-      "25 Guards",
-      "5 Vehicles",
-      "100 Patrol Runs",
-      "Email Support",
-      "Basic Analytics",
-    ],
-  },
-  {
-    id: "2",
-    name: "Pro",
-    description: "Best for growing businesses",
-    price: 49,
-    billing: "month",
-    popular: true,
-    status: "Active",
-    tenants: 56,
-    features: [
-      "100 Guards",
-      "20 Vehicles",
-      "Unlimited Patrol Runs",
-      "Priority Support",
-      "Advanced Analytics",
-      "Incident Reports",
-    ],
-  },
-  {
-    id: "3",
-    name: "Business",
-    description: "Everything you need to scale",
-    price: 99,
-    billing: "month",
-    popular: false,
-    status: "Active",
-    tenants: 18,
-    features: [
-      "Unlimited Guards",
-      "Unlimited Vehicles",
-      "Unlimited Patrol Runs",
-      "API Access",
-      "SSO",
-      "Dedicated Manager",
-    ],
-  },
-  {
-    id: "4",
-    name: "Enterprise",
-    description: "Custom solutions for enterprises",
-    price: null,
-    billing: "custom",
-    popular: false,
-    status: "Draft",
-    tenants: 0,
-    features: [
-      "Everything in Business",
-      "White Label",
-      "Custom Integrations",
-      "24/7 Premium Support",
-    ],
   },
 ]
 
@@ -635,3 +562,15 @@ export const systemUptimeData = [
   { label: "Jun 9", uptime: 99.96, target: 99.9 },
   { label: "Jun 10", uptime: 99.99, target: 99.9 },
 ]
+
+//Plans
+export const billingIntervals = [
+  {
+    label: "Monthly",
+    value: "month",
+  },
+  {
+    label: "Yearly",
+    value: "year",
+  },
+] as const
