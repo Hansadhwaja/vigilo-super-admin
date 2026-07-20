@@ -1,4 +1,4 @@
-import PlanCardSkeleton from "./planCardSkeleton"
+import PlanCardSkeleton from "./PlanCardSkeleton"
 
 const PlanListSkeleton = () => {
   return (
