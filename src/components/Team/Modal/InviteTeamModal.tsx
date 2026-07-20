@@ -17,8 +17,8 @@ const InviteTeamModal = () => {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="cursor-pointer">
-          <Plus className="mr-2 h-4 w-4" />
-          Invite team member
+          <Plus />
+          Invite <span className="max-md:hidden">team member</span>
         </Button>
       </DialogTrigger>
 

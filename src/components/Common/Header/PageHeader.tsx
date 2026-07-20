@@ -17,7 +17,7 @@ export function PageHeader({
   backTo,
 }: PageHeaderProps) {
   return (
-    <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+    <div className="-center mb-8 flex justify-between gap-4">
       <div className="flex items-start gap-3">
         {backTo && (
           <Button variant="ghost" size="icon" asChild>
@@ -27,11 +27,15 @@ export function PageHeader({
           </Button>
         )}
 
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
+        <div className="space-y-1">
+          <h1 className="text-lg font-bold tracking-tight sm:text-xl md:text-2xl xl:text-3xl">
+            {title}
+          </h1>
 
           {description && (
-            <p className="mt-1 text-muted-foreground">{description}</p>
+            <p className="text-xs text-muted-foreground sm:text-sm md:text-base">
+              {description}
+            </p>
           )}
         </div>
       </div>

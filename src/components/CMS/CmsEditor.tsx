@@ -25,7 +25,7 @@ const CmsEditor = ({
 }: CmsEditorProps) => {
   return (
     <Card className="border-border/50 shadow-sm">
-      <CardContent className="space-y-8 p-8">
+      <CardContent className="space-y-8">
         {/* Header */}
         <div className="space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
