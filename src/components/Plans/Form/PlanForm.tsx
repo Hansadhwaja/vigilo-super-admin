@@ -65,6 +65,7 @@ const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
       features: values.features.map((feature) => feature.value),
     })
   }
+  const isEdit = !!initialData
 
   return (
     <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-5">
@@ -94,7 +95,7 @@ const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
           label="Billing Interval"
           render={(field) => (
             <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger>
+              <SelectTrigger disabled={isEdit}>
                 <SelectValue placeholder="Select billing interval" />
               </SelectTrigger>
 
@@ -116,6 +117,7 @@ const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
           render={(field) => (
             <Input
               type="number"
+              disabled={isEdit}
               placeholder="Enter amount"
               value={field.value}
               onChange={(e) => field.onChange(e.target.valueAsNumber || 0)}
@@ -123,7 +125,7 @@ const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
           )}
         />
       </FieldGroup>
-      
+
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="text-sm font-medium">Features</h3>
@@ -170,7 +172,7 @@ const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
       </div>
 
       <Button type="submit" className="w-full" disabled={!isValid || isLoading}>
-        {isLoading ? <Loader /> : initialData?"Update Plan":"Create Plan"}
+        {isLoading ? <Loader /> : initialData ? "Update Plan" : "Create Plan"}
       </Button>
     </form>
   )
