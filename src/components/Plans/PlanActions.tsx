@@ -1,6 +1,6 @@
 "use client"
 
-import EditPlanModal from "./Modal/EditTenantModal"
+import EditPlanModal from "./Modal/EditPlanModal"
 import type { Plan } from "@/types"
 
 interface Props {
