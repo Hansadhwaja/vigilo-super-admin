@@ -28,7 +28,7 @@ export type CreatePlanPayload = Omit<PlanFormValues, "features"> & {
 interface Props {
   onSubmit: (values: CreatePlanPayload) => void | Promise<void>
   isLoading?: boolean
-  initialData: Plan
+  initialData?: Plan
 }
 
 const PlanForm = ({ onSubmit, isLoading = false, initialData }: Props) => {
