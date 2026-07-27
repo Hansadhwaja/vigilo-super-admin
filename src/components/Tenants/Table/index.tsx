@@ -22,7 +22,7 @@ const TenantTable = () => {
         columns={columns}
         data={tenants}
         pagination={pagination}
-        isLoading={!isLoading}
+        isLoading={isLoading}
       />
     </div>
   )
