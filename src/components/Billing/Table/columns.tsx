@@ -1,24 +1,25 @@
-
 import { Badge } from "@/components/ui/badge"
 import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { Transaction } from "@/types"
+import { formatDate } from "@/utils/date"
 
 export const columns: ColumnDef<Transaction>[] = [
   {
-    accessorKey: "date",
+    accessorKey: "paidAt",
     header: "Date",
+    cell: ({ row }) => formatDate(row.original.paidAt),
   },
   {
     accessorKey: "tenant",
     header: "Tenant",
     cell: ({ row }) => {
-      const tenant = row.original.tenant
+      const tenant = row.original.user
 
       return (
         <div className="flex items-center gap-3">
           <CustomAvatar
-            src={tenant.avatar}
+            src={""}
             alt={tenant.name}
             fallback={tenant.name}
             className="h-9 w-9"
@@ -39,6 +40,7 @@ export const columns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "plan",
     header: "Plan",
+    cell: () => "-",
   },
   {
     accessorKey: "status",
@@ -48,10 +50,11 @@ export const columns: ColumnDef<Transaction>[] = [
 
       return (
         <Badge
+          className="capitalize"
           variant={
-            status === "Paid"
+            status === "paid"
               ? "default"
-              : status === "Pending"
+              : status === "pending"
                 ? "secondary"
                 : "destructive"
           }
@@ -64,5 +67,6 @@ export const columns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "method",
     header: "Method",
+    cell: () => "-",
   },
 ]

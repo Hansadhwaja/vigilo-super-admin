@@ -13,30 +13,54 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import type { Table } from "@tanstack/react-table"
+import useQueryParams from "@/hooks/useQueryParams"
+import type { Pagination } from "@/types"
 
-interface DataTablePaginationProps<TData> {
-  table: Table<TData>
+interface DataTablePaginationProps {
+  pagination: Pagination
   pageSizeOptions?: number[]
   showFirstLastButtons?: boolean
 }
 
-export function DataTablePagination<TData>({
-  table,
+export function DataTablePagination({
+  pagination,
   pageSizeOptions = [10, 20, 30, 50],
   showFirstLastButtons = true,
-}: DataTablePaginationProps<TData>) {
+}: DataTablePaginationProps) {
+  const { setMultipleParams } = useQueryParams()
+
+  const { page, limit, totalPages } = pagination
+
+  const canPrevious = page > 1
+  const canNext = page < totalPages
+
+  const handlePageChange = (page: number) => {
+    setMultipleParams(
+      {
+        page,
+        limit,
+      },
+      false
+    )
+  }
+
+  const handleLimitChange = (value: string) => {
+    setMultipleParams(
+      {
+        page: 1,
+        limit: Number(value),
+      },
+      false
+    )
+  }
+
   return (
     <div className="flex items-center justify-end gap-4 px-2 py-3">
       <div className="flex flex-wrap items-center gap-4">
-        {/* Rows per page */}
         <div className="flex items-center gap-2">
           <p className="text-sm font-medium whitespace-nowrap">Rows per page</p>
 
-          <Select
-            value={String(table.getState().pagination.pageSize)}
-            onValueChange={(value) => table.setPageSize(Number(value))}
-          >
+          <Select value={String(limit)} onValueChange={handleLimitChange}>
             <SelectTrigger className="h-8 w-20">
               <SelectValue />
             </SelectTrigger>
@@ -51,21 +75,18 @@ export function DataTablePagination<TData>({
           </Select>
         </div>
 
-        {/* Page Info */}
         <div className="text-sm font-medium whitespace-nowrap">
-          Page {table.getState().pagination.pageIndex + 1} of{" "}
-          {table.getPageCount()}
+          Page {page} of {totalPages}
         </div>
 
-        {/* Navigation */}
         <div className="flex items-center gap-1">
           {showFirstLastButtons && (
             <Button
               variant="outline"
               size="icon"
               className="hidden h-8 w-8 lg:flex"
-              onClick={() => table.setPageIndex(0)}
-              disabled={!table.getCanPreviousPage()}
+              onClick={() => handlePageChange(1)}
+              disabled={!canPrevious}
             >
               <ChevronsLeft className="h-4 w-4" />
             </Button>
@@ -75,8 +96,8 @@ export function DataTablePagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => handlePageChange(page - 1)}
+            disabled={!canPrevious}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
@@ -85,8 +106,8 @@ export function DataTablePagination<TData>({
             variant="outline"
             size="icon"
             className="h-8 w-8"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={() => handlePageChange(page + 1)}
+            disabled={!canNext}
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
@@ -96,8 +117,8 @@ export function DataTablePagination<TData>({
               variant="outline"
               size="icon"
               className="hidden h-8 w-8 lg:flex"
-              onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-              disabled={!table.getCanNextPage()}
+              onClick={() => handlePageChange(totalPages)}
+              disabled={!canNext}
             >
               <ChevronsRight className="h-4 w-4" />
             </Button>

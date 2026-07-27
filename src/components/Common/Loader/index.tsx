@@ -7,7 +7,11 @@ interface LoaderProps {
 }
 
 const Loader = ({ className }: LoaderProps) => {
-  return <Loader2 className={cn("size-4 animate-spin", className)} />
+  return (
+    <div className="flex items-center justify-center">
+      <Loader2 className={cn("size-4 animate-spin", className)} />
+    </div>
+  )
 }
 
 export default Loader

@@ -1,21 +1,29 @@
-"use client"
-
 import { DataTable } from "@/components/ui/data-table"
 import { columns } from "./columns"
 import { useGetAllCompaniesQuery } from "@/store/api/tenants/tenantsApi"
-import Loader from "@/components/Common/Loader"
+import useQueryParams from "@/hooks/useQueryParams"
 
 const TenantTable = () => {
-  const { data, isLoading } = useGetAllCompaniesQuery({
-    page: 1,
-    limit: 6,
-  })
-  const tenants = data?.data ?? []
+  const { getParam } = useQueryParams()
+  const page = Number(getParam("page", "1"))
+  const limit = Number(getParam("limit", "10"))
 
-  if (isLoading) return <Loader />
+  const { data, isLoading } = useGetAllCompaniesQuery({
+    page,
+    limit,
+  })
+
+  const tenants = data?.data ?? []
+  const pagination = data?.pagination
+
   return (
     <div>
-      <DataTable columns={columns} data={tenants} />
+      <DataTable
+        columns={columns}
+        data={tenants}
+        pagination={pagination}
+        isLoading={!isLoading}
+      />
     </div>
   )
 }
