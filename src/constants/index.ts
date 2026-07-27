@@ -3,7 +3,6 @@ import type {
   TeamMember,
   Tenant,
   TopTenant,
-  Transaction,
 } from "@/types"
 import {
   LayoutDashboard,
@@ -221,69 +220,6 @@ export const topTenants: TopTenant[] = [
     patrolRuns: 138,
     activeGuards: 22,
     alarms: 5,
-  },
-]
-
-export const transactions: Transaction[] = [
-  {
-    id: "TXN-1001",
-    date: "26 Jun 2026",
-    tenant: {
-      avatar: "https://i.pravatar.cc/150?img=11",
-      name: "Acme Security",
-    },
-    amount: 49,
-    plan: "Pro",
-    status: "Paid",
-    method: "Card",
-  },
-  {
-    id: "TXN-1002",
-    date: "25 Jun 2026",
-    tenant: {
-      avatar: "https://i.pravatar.cc/150?img=12",
-      name: "ShieldOps",
-    },
-    amount: 99,
-    plan: "Business",
-    status: "Paid",
-    method: "UPI",
-  },
-  {
-    id: "TXN-1003",
-    date: "24 Jun 2026",
-    tenant: {
-      avatar: "https://i.pravatar.cc/150?img=13",
-      name: "Night Watch",
-    },
-    amount: 19,
-    plan: "Starter",
-    status: "Pending",
-    method: "Card",
-  },
-  {
-    id: "TXN-1004",
-    date: "23 Jun 2026",
-    tenant: {
-      avatar: "https://i.pravatar.cc/150?img=14",
-      name: "Guardian Force",
-    },
-    amount: 499,
-    plan: "Enterprise",
-    status: "Paid",
-    method: "Bank Transfer",
-  },
-  {
-    id: "TXN-1005",
-    date: "22 Jun 2026",
-    tenant: {
-      avatar: "https://i.pravatar.cc/150?img=15",
-      name: "Secure Patrol",
-    },
-    amount: 49,
-    plan: "Pro",
-    status: "Failed",
-    method: "Card",
   },
 ]
 
