@@ -8,13 +8,13 @@ type AuthState = {
 }
 
 const getStoredUser = (): User | null => {
-  const user = localStorage.getItem("user")
+  const user = localStorage.getItem("super-admin-user")
 
   return user ? JSON.parse(user) : null
 }
 
 const initialState: AuthState = {
-  token: localStorage.getItem("token"),
+  token: localStorage.getItem("super-admin-token"),
   user: getStoredUser(),
 }
 

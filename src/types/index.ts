@@ -6,6 +6,7 @@ export * from "./Tenant"
 export * from "./Team"
 export * from "./Support"
 export * from "./Settings"
+export * from "./Profile"
 
 export type Pagination = {
   total: number

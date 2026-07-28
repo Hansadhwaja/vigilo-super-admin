@@ -27,8 +27,8 @@ const LogoutConfirmModal = ({ children }: Props) => {
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
+    localStorage.removeItem("super-admin-token")
+    localStorage.removeItem("super-admin-user")
 
     dispatch(clearCredentials())
 

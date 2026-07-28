@@ -22,8 +22,8 @@ const LoginPage = () => {
 
       const { token, user } = response
 
-      localStorage.setItem("token", token)
-      localStorage.setItem("user", JSON.stringify(user))
+      localStorage.setItem("super-admin-token", token)
+      localStorage.setItem("super-admin-user", JSON.stringify(user))
 
       dispatch(setCredentials({ token, user }))
 

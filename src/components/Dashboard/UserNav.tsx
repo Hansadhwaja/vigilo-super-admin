@@ -1,5 +1,3 @@
-"use client"
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,24 +6,44 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { LogOut, Settings, User } from "lucide-react"
-import LogoutConfirmModal from "../Auth/Modal/LogoutModal"
+import { Link } from "react-router"
 
-export function UserNav() {
+import Loader from "../Common/Loader"
+import LogoutConfirmModal from "../Auth/Modal/LogoutModal"
+import CustomAvatar from "../Common/Avatar/CustomAvatar"
+import { Button } from "../ui/button"
+
+import { useGetProfileQuery } from "@/store/api/profile/profileApis"
+
+const UserNav = () => {
+  const { data, isLoading } = useGetProfileQuery(undefined)
+
+  const user = data?.data
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="flex items-center gap-3 rounded-lg p-1 transition-colors hover:bg-accent">
-          <Avatar className="h-9 w-9">
-            <AvatarFallback>SA</AvatarFallback>
-          </Avatar>
+      <DropdownMenuTrigger asChild disabled={isLoading}>
+        <Button
+          variant="ghost"
+          aria-label="User menu"
+          className="flex items-center gap-3 rounded-lg p-1 transition-colors hover:bg-accent"
+        >
+          {isLoading ? (
+            <Loader />
+          ) : (
+            <>
+              <CustomAvatar src={user?.avatar} alt={user?.name ?? "User"} />
 
-          <div className="hidden text-left lg:block">
-            <p className="text-sm font-medium">Super Admin</p>
-            <p className="text-xs text-muted-foreground">admin@vigilo.com</p>
-          </div>
-        </button>
+              <div className="hidden text-left lg:block">
+                <p className="text-sm font-medium">{user?.name ?? "User"}</p>
+                <p className="text-xs text-muted-foreground">
+                  {user?.email ?? ""}
+                </p>
+              </div>
+            </>
+          )}
+        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-56">
@@ -33,14 +51,18 @@ export function UserNav() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem>
-          <User className="mr-2 h-4 w-4" />
-          Profile
+        <DropdownMenuItem asChild>
+          <Link to="/profile">
+            <User className="mr-2 h-4 w-4" />
+            Profile
+          </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem>
-          <Settings className="mr-2 h-4 w-4" />
-          Settings
+        <DropdownMenuItem asChild>
+          <Link to="/settings">
+            <Settings className="mr-2 h-4 w-4" />
+            Settings
+          </Link>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
@@ -50,7 +72,7 @@ export function UserNav() {
             className="text-destructive focus:text-destructive"
             onSelect={(e) => e.preventDefault()}
           >
-            <LogOut />
+            <LogOut className="mr-2 h-4 w-4" />
             Logout
           </DropdownMenuItem>
         </LogoutConfirmModal>
@@ -58,3 +80,5 @@ export function UserNav() {
     </DropdownMenu>
   )
 }
+
+export default UserNav

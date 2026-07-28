@@ -1,11 +1,9 @@
-"use client"
-
 import { Bell, Search } from "lucide-react"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { UserNav } from "./UserNav"
 import { ModeToggle } from "../Common/Theme/ModeToggle"
+import UserNav from "./UserNav"
 
 const DashboardTopBar = () => {
   return (

@@ -15,6 +15,7 @@ import SettingsPage from "@/pages/settings"
 import GuestRoute from "@/components/Auth/GuestRoute"
 import ProtectedRoute from "@/components/Auth/ProtectedRoute"
 import TenantDetailsPage from "@/pages/tenants/TenantDetailsPage"
+import ProfilePage from "@/pages/profile/ProfilePage"
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
           {
             path: "/settings",
             element: <SettingsPage />,
+          },
+          {
+            path: "/profile",
+            element: <ProfilePage />,
           },
         ],
       },

@@ -1,16 +1,11 @@
-
-import { cn } from "@/lib/utils";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
+import { cn } from "@/lib/utils"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 interface CustomAvatarProps {
-  src?: string;
-  alt?: string;
-  fallback?: string;
-  className?: string;
+  src?: string
+  alt?: string
+  fallback?: string
+  className?: string
 }
 
 const CustomAvatar = ({
@@ -24,7 +19,7 @@ const CustomAvatar = ({
       <AvatarImage src={src} alt={alt} />
       <AvatarFallback>{fallback}</AvatarFallback>
     </Avatar>
-  );
-};
+  )
+}
 
-export default CustomAvatar;
+export default CustomAvatar
