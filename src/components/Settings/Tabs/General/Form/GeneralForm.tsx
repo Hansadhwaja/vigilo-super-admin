@@ -47,7 +47,7 @@ const GeneralForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FieldSet className="space-y-6">
-        <FieldGroup className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <FieldGroup className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Controller
             control={control}
             name="platformName"

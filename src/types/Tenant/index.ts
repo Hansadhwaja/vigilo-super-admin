@@ -6,7 +6,14 @@ export type Tenant = {
   mobile: string
   address: string
   subdomain: string
-  plan: string
+  plan: {
+    amount: number
+    currency: string
+    description: string
+    id: string
+    interval: string
+    name: string
+  } | null
   status: string
   guards: number
   vehicles: number

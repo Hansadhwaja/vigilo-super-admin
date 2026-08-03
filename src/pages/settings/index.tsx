@@ -1,5 +1,5 @@
 import { PageHeader } from "@/components/Common/Header/PageHeader"
-import SettingsTabs from "@/components/Settings/Tabs"
+import GeneralTab from "@/components/Settings/Tabs/General/GeneralTab"
 
 const SettingsPage = () => {
   return (
@@ -8,7 +8,7 @@ const SettingsPage = () => {
         title="Settings"
         description="Configure platform settings, preferences, and integrations."
       />
-      <SettingsTabs />
+     <GeneralTab />
     </div>
   )
 }

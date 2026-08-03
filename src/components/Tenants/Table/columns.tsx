@@ -41,7 +41,7 @@ export const columns: ColumnDef<Tenant>[] = [
   {
     accessorKey: "plan",
     header: "Plan",
-    cell: ({ row }) => displayValue(row.original.plan),
+    cell: ({ row }) => displayValue(row.original.plan?.name),
   },
   {
     accessorKey: "status",
