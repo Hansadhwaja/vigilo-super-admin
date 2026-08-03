@@ -38,7 +38,7 @@ const TenantHeader = ({ tenant }: Props) => {
             </Badge>
 
             <Badge variant="outline" className="capitalize">
-              {tenant.plan ?? "enterprise"}
+              {tenant.plan?.name ?? "enterprise"}
             </Badge>
           </div>
         </div>
