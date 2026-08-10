@@ -48,11 +48,11 @@ export const navLinks = [
     label: "CMS",
     link: "/cms",
   },
-  {
-    icon: ShieldCheck,
-    label: "Platform Team",
-    link: "/team",
-  },
+  // {
+  //   icon: ShieldCheck,
+  //   label: "Platform Team",
+  //   link: "/team",
+  // },
   {
     icon: Settings,
     label: "Settings",

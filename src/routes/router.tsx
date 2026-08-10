@@ -10,7 +10,6 @@ import BillingPage from "@/pages/billing"
 import AnalyticsPage from "@/pages/analytics"
 import SupportPage from "@/pages/support"
 import CMSPage from "@/pages/cms"
-import TeamPage from "@/pages/team"
 import SettingsPage from "@/pages/settings"
 import GuestRoute from "@/components/Auth/GuestRoute"
 import ProtectedRoute from "@/components/Auth/ProtectedRoute"
@@ -70,10 +69,10 @@ export const router = createBrowserRouter([
             path: "/cms",
             element: <CMSPage />,
           },
-          {
-            path: "/team",
-            element: <TeamPage />,
-          },
+          // {
+          //   path: "/team",
+          //   element: <TeamPage />,
+          // },
           {
             path: "/settings",
             element: <SettingsPage />,

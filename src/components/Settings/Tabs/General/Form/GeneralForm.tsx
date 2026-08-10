@@ -14,13 +14,6 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import {
   generalSettingsSchema,
   type GeneralSettingsFormValues,
 } from "@/schemas/settings.schemas"
@@ -29,8 +22,8 @@ const defaultValues: GeneralSettingsFormValues = {
   platformName: "Vigilo",
   supportEmail: "support@vigilo.com",
   supportPhone: "+1 (800) 555-0143",
-  timezone: "UTC",
-  currency: "USD",
+  // timezone: "UTC",
+  // currency: "USD",
 }
 
 const GeneralForm = () => {
@@ -106,7 +99,7 @@ const GeneralForm = () => {
             )}
           />
 
-          <Controller
+          {/* <Controller
             control={control}
             name="timezone"
             render={({ field, fieldState }) => (
@@ -167,7 +160,7 @@ const GeneralForm = () => {
                 </FieldContent>
               </Field>
             )}
-          />
+          /> */}
         </FieldGroup>
 
         <div className="flex justify-end gap-3 border-t pt-6">

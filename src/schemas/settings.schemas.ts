@@ -4,8 +4,8 @@ export const generalSettingsSchema = z.object({
   platformName: z.string().min(1, "Platform name is required."),
   supportEmail: z.email("Please enter a valid email address."),
   supportPhone: z.string().min(1, "Support phone is required."),
-  timezone: z.string().min(1, "Please select a timezone."),
-  currency: z.string().min(1, "Please select a currency."),
+  // timezone: z.string().min(1, "Please select a timezone."),
+  // currency: z.string().min(1, "Please select a currency."),
 })
 
 export type GeneralSettingsFormValues = z.infer<typeof generalSettingsSchema>
