@@ -12,19 +12,9 @@ const tabs: TabItem[] = [
     content: <div>Plan & Billing</div>,
   },
   {
-    value: "branding",
-    label: "Branding",
-    content: <div>Branding</div>,
-  },
-  {
     value: "users",
     label: "Users",
     content: <div>Users</div>,
-  },
-  {
-    value: "activity-log",
-    label: "Activity Log",
-    content: <div>Activity Log</div>,
   },
   {
     value: "notes",
