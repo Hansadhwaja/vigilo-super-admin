@@ -39,9 +39,7 @@ export interface TopTenant {
 export type RecentTenant = {
   id: string
   name: string
-  status: "Active" | "Trial" | "Suspended"
-  plan: "Monthly" | "Annual"
-  country: string
-  registeredAt: string
+  email:string
+  createdAt: string
   avatar: string
 }

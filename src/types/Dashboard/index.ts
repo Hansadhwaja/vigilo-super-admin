@@ -1,15 +1,16 @@
 export type TenantGrowthData = {
   month: string
-  tenants: number
+  count: number
 }
 
 export type RevenueGrowthData = {
   month: string
-  revenue: number
+  total: number
 }
 
 export type PlanDistributionData = {
-  plan: string
-  subscribers: number
-  fill: string
+  planName: string
+  count: number
+  interval: string
+  planId: string
 }

@@ -31,12 +31,18 @@ const chartConfig = {
 } satisfies ChartConfig
 
 const RevenueGrowthChart = ({ data }: RevenueGrowthChartProps) => {
+  const chartData = data.map((item) => ({
+    ...item,
+    month: new Date(item.month).toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    }),
+  }))
+
   return (
-    <Card className="border-border/50 shadow-sm">
+    <Card className="w-full min-w-0 border-border/50 shadow-sm">
       <CardHeader className="px-4 py-4 sm:px-6">
-        <CardTitle className="text-base sm:text-lg">
-          Revenue Growth
-        </CardTitle>
+        <CardTitle className="text-base sm:text-lg">Revenue Growth</CardTitle>
 
         <CardDescription className="text-xs sm:text-sm">
           Revenue generated over the last 12 months
@@ -49,7 +55,7 @@ const RevenueGrowthChart = ({ data }: RevenueGrowthChartProps) => {
           className="h-[250px] w-full sm:h-[300px] lg:h-[350px]"
         >
           <LineChart
-            data={data}
+            data={chartData}
             margin={{
               left: 0,
               right: 8,
@@ -72,31 +78,28 @@ const RevenueGrowthChart = ({ data }: RevenueGrowthChartProps) => {
               tickLine={false}
               axisLine={false}
               tickMargin={6}
-              width={42}
+              width={48}
               tick={{ fontSize: 11 }}
-              tickFormatter={(value) => `₹${value / 1000}k`}
+              tickFormatter={(value) => `$${value / 1000}k`}
             />
 
             <ChartTooltip
               cursor={false}
               content={
                 <ChartTooltipContent
-                  formatter={(value) =>
-                    `₹${Number(value).toLocaleString("en-IN")}`
-                  }
+                  formatter={(value) => `$${Number(value).toLocaleString()}`}
                 />
               }
             />
 
             <Line
-              dataKey="revenue"
+              dataKey="total"
+              name="Revenue"
               type="monotone"
               stroke="var(--color-revenue)"
               strokeWidth={2}
               dot={false}
-              activeDot={{
-                r: 5,
-              }}
+              activeDot={{ r: 5 }}
             />
           </LineChart>
         </ChartContainer>

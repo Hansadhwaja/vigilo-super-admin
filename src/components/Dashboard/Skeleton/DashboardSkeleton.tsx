@@ -128,12 +128,11 @@ const DashboardSkeleton = () => {
 
       {/* Plan Distribution + Recent Tenants */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
-        <div className="xl:col-span-1">
-          <PlanDistributionSkeleton />
-        </div>
-
         <div className="xl:col-span-2">
           <RecentTenantSkeleton />
+        </div>
+        <div className="xl:col-span-1">
+          <PlanDistributionSkeleton />
         </div>
       </div>
     </div>

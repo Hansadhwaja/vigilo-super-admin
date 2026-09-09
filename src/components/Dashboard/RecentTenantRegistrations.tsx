@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { RecentTenant } from "@/types"
 import { getInitials } from "@/lib/utils/index"
-import StatusBadge from "../Common/Badge/StatusBadge"
+import { formatDate } from "@/utils/date"
 
 type RecentTenantRegistrationsProps = {
   tenants: RecentTenant[]
@@ -44,22 +44,16 @@ const RecentTenantRegistrations = ({
                   <p className="min-w-0 truncate text-sm font-medium">
                     {tenant.name}
                   </p>
-
-                  <StatusBadge status={tenant.status} />
                 </div>
 
                 <div className="mt-0.5 flex min-w-0 items-center gap-1.5 text-[11px] text-muted-foreground sm:mt-1 sm:text-xs">
-                  <span className="shrink-0">{tenant.plan}</span>
-
-                  <span>·</span>
-
-                  <span className="truncate">{tenant.country}</span>
+                  <span className="shrink-0">{tenant.email}</span>
                 </div>
               </div>
 
               {/* Registration time */}
               <span className="shrink-0 text-[10px] text-muted-foreground sm:text-xs">
-                {tenant.registeredAt}
+                {tenant.createdAt ? formatDate(tenant.createdAt) : "-"}
               </span>
             </div>
           ))}

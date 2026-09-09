@@ -1,12 +1,6 @@
 "use client"
 
-import {
-  CartesianGrid,
-  Line,
-  LineChart,
-  XAxis,
-  YAxis,
-} from "recharts"
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts"
 
 import {
   Card,
@@ -37,12 +31,18 @@ const chartConfig = {
 } satisfies ChartConfig
 
 const TenantGrowthChart = ({ data }: TenantGrowthChartProps) => {
+  const chartData = data.map((item) => ({
+    ...item,
+    month: new Date(item.month).toLocaleDateString("en-US", {
+      month: "short",
+      year: "numeric",
+    }),
+  }))
+
   return (
-    <Card className="border-border/50 shadow-sm">
+    <Card className="w-full min-w-0 border-border/50 shadow-sm">
       <CardHeader className="px-4 py-4 sm:px-6">
-        <CardTitle className="text-base sm:text-lg">
-          Tenant Growth
-        </CardTitle>
+        <CardTitle className="text-base sm:text-lg">Tenant Growth</CardTitle>
 
         <CardDescription className="text-xs sm:text-sm">
           Tenant growth over the last 12 months
@@ -55,7 +55,7 @@ const TenantGrowthChart = ({ data }: TenantGrowthChartProps) => {
           className="h-[250px] w-full sm:h-[300px] lg:h-[350px]"
         >
           <LineChart
-            data={data}
+            data={chartData}
             margin={{
               left: 0,
               right: 8,
@@ -83,13 +83,11 @@ const TenantGrowthChart = ({ data }: TenantGrowthChartProps) => {
               tick={{ fontSize: 11 }}
             />
 
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
 
             <Line
-              dataKey="tenants"
+              dataKey="count"
+              name="Tenants"
               type="monotone"
               stroke="var(--color-tenants)"
               strokeWidth={2}

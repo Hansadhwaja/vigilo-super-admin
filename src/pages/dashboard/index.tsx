@@ -4,63 +4,110 @@ import PlanDistributionChart from "@/components/Dashboard/Charts/PlanDistributio
 import RevenueGrowthChart from "@/components/Dashboard/Charts/RevenueGrowthChart"
 import TenantGrowthChart from "@/components/Dashboard/Charts/TenantGrowthChart"
 import RecentTenantRegistrations from "@/components/Dashboard/RecentTenantRegistrations"
+import DashboardSkeleton from "@/components/Dashboard/Skeleton/DashboardSkeleton"
 import UsageStats from "@/components/Dashboard/UsageStats"
-
-import {
-  dummyPlanDistribution,
-  dummyRevenueGrowth,
-  dummyTenantGrowth,
-  recentTenants,
-} from "@/constants"
+import { formatCurrency } from "@/lib/utils/index"
+import { useGetDashboardContentQuery } from "@/store/api/dashboard/dashboardApis"
 
 import {
   BadgeCheck,
   BadgeX,
   Building2,
+  CalendarDays,
+  Footprints,
+  ShieldCheck,
   UserPlus,
   Users,
   Wallet,
 } from "lucide-react"
 
 export default function DashboardPage() {
+  const { data, isLoading } = useGetDashboardContentQuery(undefined)
+
+  const dashboardData = data?.data
+
+  if (isLoading) return <DashboardSkeleton />
+
+  const {
+    totalUsers,
+    newSignupsThisMonth,
+    activeSubscribers,
+    nonActiveSubscribers,
+    totalMonthlyRevenue,
+    totalShifts,
+    totalPatrolRuns,
+    activeClients,
+    totalGuards,
+    totalClients,
+    adminSignupsByMonth = [],
+    monthlyRevenue = [],
+    subscriptionPlanDistribution = [],
+    recentAdminSignups = [],
+  } = dashboardData
+
   const stats = [
     {
-      title: "Total Tenants",
-      value: 124,
+      title: "Total Companies",
+      value: totalUsers,
       icon: Building2,
       color: "bg-blue-500/10 text-blue-500",
     },
     {
-      title: "Active Tenants",
-      value: 89,
+      title: "Active Clients",
+      value: activeClients,
       icon: Users,
       color: "bg-violet-500/10 text-violet-500",
     },
     {
       title: "New Signups",
-      value: "5,432",
+      value: newSignupsThisMonth,
       icon: UserPlus,
       color: "bg-orange-500/10 text-orange-500",
-      trend: 8.2,
     },
     {
       title: "Active Subscriptions",
-      value: "4,821",
+      value: activeSubscribers,
       icon: BadgeCheck,
       color: "bg-green-500/10 text-green-500",
     },
     {
       title: "Inactive Subscriptions",
-      value: "611",
+      value: nonActiveSubscribers,
       icon: BadgeX,
       color: "bg-red-500/10 text-red-500",
     },
     {
       title: "Monthly Revenue",
-      value: "₹1,24,500",
+      value: formatCurrency(totalMonthlyRevenue),
       icon: Wallet,
       color: "bg-emerald-500/10 text-emerald-500",
-      trend: 12.5,
+    },
+  ]
+
+  const usageStats = [
+    {
+      title: "Total Shifts",
+      value: totalShifts,
+      icon: CalendarDays,
+      color: "bg-blue-500/10 text-blue-500",
+    },
+    {
+      title: "Total Patrols",
+      value: totalPatrolRuns,
+      icon: Footprints,
+      color: "bg-violet-500/10 text-violet-500",
+    },
+    {
+      title: "Total Guards",
+      value: totalGuards,
+      icon: ShieldCheck,
+      color: "bg-green-500/10 text-green-500",
+    },
+    {
+      title: "Total Clients",
+      value: totalClients,
+      icon: Users,
+      color: "bg-orange-500/10 text-orange-500",
     },
   ]
 
@@ -75,21 +122,21 @@ export default function DashboardPage() {
       <StatList stats={stats} />
 
       {/* Usage */}
-      <UsageStats />
+      <UsageStats usageStats={usageStats} />
 
       {/* Growth charts */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-2">
-        <TenantGrowthChart data={dummyTenantGrowth} />
-        <RevenueGrowthChart data={dummyRevenueGrowth} />
+        <TenantGrowthChart data={adminSignupsByMonth} />
+        <RevenueGrowthChart data={monthlyRevenue} />
       </div>
 
       {/* Subscription distribution */}
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
         <div className="xl:col-span-2">
-          <RecentTenantRegistrations tenants={recentTenants} />
+          <RecentTenantRegistrations tenants={recentAdminSignups} />
         </div>
         <div className="xl:col-span-1">
-          <PlanDistributionChart data={dummyPlanDistribution} />
+          <PlanDistributionChart data={subscriptionPlanDistribution} />
         </div>
       </div>
     </div>

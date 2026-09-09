@@ -10,14 +10,14 @@ const StatCard = ({ stat }: StatCardProps) => {
   const Icon = stat.icon
 
   return (
-    <Card className="p-0 transition-all duration-200 hover:shadow-md rounded-xl">
+    <Card className="p-0 transition-all duration-200 hover:shadow-md">
       <CardContent className="flex items-center justify-between p-2 sm:p-4">
         <div className="min-w-0 space-y-0.5">
-          <p className="text-[10px] sm:text-xs font-medium text-muted-foreground">
+          <p className="text-[10px] font-medium text-muted-foreground sm:text-xs">
             {stat.title}
           </p>
 
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold tracking-tight">
+          <h3 className="text-lg font-bold tracking-tight sm:text-xl lg:text-2xl">
             {stat.value}
           </h3>
 
@@ -30,10 +30,8 @@ const StatCard = ({ stat }: StatCardProps) => {
           {stat.trend !== undefined && (
             <p
               className={cn(
-                "text-[10px] sm:text-xs font-medium",
-                stat.trend >= 0
-                  ? "text-green-600"
-                  : "text-red-600"
+                "text-[10px] font-medium sm:text-xs",
+                stat.trend >= 0 ? "text-green-600" : "text-red-600"
               )}
             >
               {stat.trend >= 0 ? "+" : ""}
