@@ -18,27 +18,36 @@ import {
   type GeneralSettingsFormValues,
 } from "@/schemas/settings.schemas"
 
-const defaultValues: GeneralSettingsFormValues = {
-  platformName: "Vigilo",
-  supportEmail: "support@vigilo.com",
-  supportPhone: "+1 (800) 555-0143",
-  // timezone: "UTC",
-  // currency: "USD",
+interface Props {
+  initialData: GeneralSettingsFormValues
+  onSubmit: (v: GeneralSettingsFormValues) => void
+  isLoading: boolean
 }
 
-const GeneralForm = () => {
-  const { control, handleSubmit, reset, formState } =
-    useForm<GeneralSettingsFormValues>({
-      resolver: zodResolver(generalSettingsSchema),
-      defaultValues,
-    })
+const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
+  const defaultValues: GeneralSettingsFormValues = {
+    platformName: initialData?.platformName ?? "",
+    supportEmail: initialData?.supportEmail ?? "",
+    supportPhone: initialData?.supportPhone ?? "",
+  }
+  const form = useForm<GeneralSettingsFormValues>({
+    resolver: zodResolver(generalSettingsSchema),
+    defaultValues,
+  })
 
-  const onSubmit = (data: GeneralSettingsFormValues) => {
-    console.log(data)
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { isValid },
+  } = form
+
+  const onFormSubmit = (data: GeneralSettingsFormValues) => {
+    onSubmit(data)
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onFormSubmit)}>
       <FieldSet className="space-y-6">
         <FieldGroup className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Controller
@@ -98,69 +107,6 @@ const GeneralForm = () => {
               </Field>
             )}
           />
-
-          {/* <Controller
-            control={control}
-            name="timezone"
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Default Timezone</FieldLabel>
-
-                <FieldContent>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select timezone" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectItem value="UTC">UTC</SelectItem>
-                      <SelectItem value="Asia/Kolkata">Asia/Kolkata</SelectItem>
-                      <SelectItem value="America/New_York">
-                        America/New_York
-                      </SelectItem>
-                      <SelectItem value="Europe/London">
-                        Europe/London
-                      </SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </FieldContent>
-              </Field>
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="currency"
-            render={({ field, fieldState }) => (
-              <Field data-invalid={fieldState.invalid}>
-                <FieldLabel>Default Currency</FieldLabel>
-
-                <FieldContent>
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select currency" />
-                    </SelectTrigger>
-
-                    <SelectContent>
-                      <SelectItem value="USD">USD</SelectItem>
-                      <SelectItem value="EUR">EUR</SelectItem>
-                      <SelectItem value="GBP">GBP</SelectItem>
-                      <SelectItem value="INR">INR</SelectItem>
-                      <SelectItem value="AED">AED</SelectItem>
-                    </SelectContent>
-                  </Select>
-
-                  {fieldState.invalid && (
-                    <FieldError errors={[fieldState.error]} />
-                  )}
-                </FieldContent>
-              </Field>
-            )}
-          /> */}
         </FieldGroup>
 
         <div className="flex justify-end gap-3 border-t pt-6">
@@ -168,7 +114,7 @@ const GeneralForm = () => {
             Reset
           </Button>
 
-          <Button type="submit" disabled={formState.isSubmitting}>
+          <Button type="submit" disabled={isLoading || !isValid}>
             Save Changes
           </Button>
         </div>

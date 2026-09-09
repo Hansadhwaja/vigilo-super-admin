@@ -17,7 +17,7 @@ export function PageHeader({
   backTo,
 }: PageHeaderProps) {
   return (
-    <div className="-center mb-8 flex justify-between gap-4">
+    <div className="mb-8 flex items-center justify-between gap-4">
       <div className="flex items-start gap-3">
         {backTo && (
           <Button variant="ghost" size="icon" asChild>

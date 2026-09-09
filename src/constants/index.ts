@@ -1,4 +1,13 @@
-import type { Enquiry, TeamMember, Tenant, TopTenant } from "@/types"
+import type {
+  Enquiry,
+  PlanDistributionData,
+  RecentTenant,
+  RevenueGrowthData,
+  TeamMember,
+  Tenant,
+  TenantGrowthData,
+  TopTenant,
+} from "@/types"
 import {
   LayoutDashboard,
   Users,
@@ -505,3 +514,114 @@ export const billingIntervals = [
     value: "year",
   },
 ] as const
+
+//Dashboard Chart Data
+export const dummyTenantGrowth: TenantGrowthData[] = [
+  { month: "Oct 2025", tenants: 72 },
+  { month: "Nov 2025", tenants: 78 },
+  { month: "Dec 2025", tenants: 81 },
+  { month: "Jan 2026", tenants: 86 },
+  { month: "Feb 2026", tenants: 91 },
+  { month: "Mar 2026", tenants: 95 },
+  { month: "Apr 2026", tenants: 101 },
+  { month: "May 2026", tenants: 108 },
+  { month: "Jun 2026", tenants: 114 },
+  { month: "Jul 2026", tenants: 117 },
+  { month: "Aug 2026", tenants: 121 },
+  { month: "Sep 2026", tenants: 124 },
+]
+
+export const dummyRevenueGrowth: RevenueGrowthData[] = [
+  { month: "Oct 2025", revenue: 82000 },
+  { month: "Nov 2025", revenue: 91000 },
+  { month: "Dec 2025", revenue: 98000 },
+  { month: "Jan 2026", revenue: 105000 },
+  { month: "Feb 2026", revenue: 112000 },
+  { month: "Mar 2026", revenue: 118000 },
+  { month: "Apr 2026", revenue: 109000 },
+  { month: "May 2026", revenue: 124000 },
+  { month: "Jun 2026", revenue: 132000 },
+  { month: "Jul 2026", revenue: 141000 },
+  { month: "Aug 2026", revenue: 148000 },
+  { month: "Sep 2026", revenue: 156000 },
+]
+
+export const dummyPlanDistribution: PlanDistributionData[] = [
+  {
+    plan: "Monthly",
+    subscribers: 68,
+    fill: "var(--color-monthly)",
+  },
+  {
+    plan: "Annual",
+    subscribers: 32,
+    fill: "var(--color-annual)",
+  },
+]
+
+export const recentTenants: RecentTenant[] = [
+  {
+    id: "t10",
+    name: "Wolfpack Mobile Patrol",
+    status: "Trial",
+    plan: "Monthly",
+    country: "Norway",
+    registeredAt: "3d ago",
+  },
+  {
+    id: "t3",
+    name: "Iron Watch Patrol",
+    status: "Trial",
+    plan: "Monthly",
+    country: "Nigeria",
+    registeredAt: "9d ago",
+  },
+  {
+    id: "t6",
+    name: "Phoenix Patrol Network",
+    status: "Active",
+    plan: "Monthly",
+    country: "United States",
+    registeredAt: "4mo ago",
+  },
+  {
+    id: "t8",
+    name: "Vanguard Asset Protection",
+    status: "Active",
+    plan: "Monthly",
+    country: "Singapore",
+    registeredAt: "6mo ago",
+  },
+  {
+    id: "t5",
+    name: "Cobra Security Solutions",
+    status: "Suspended",
+    plan: "Monthly",
+    country: "Mexico",
+    registeredAt: "8mo ago",
+  },
+  {
+    id: "t4",
+    name: "Northstar Guarding Co.",
+    status: "Active",
+    plan: "Monthly",
+    country: "Sweden",
+    registeredAt: "10mo ago",
+  },
+  {
+    id: "t11",
+    name: "Citadel Event Security",
+    status: "Active",
+    plan: "Annual",
+    country: "Portugal",
+    registeredAt: "12mo ago",
+  },
+  {
+    id: "t1",
+    name: "Allied Security Group",
+    status: "Active",
+    plan: "Monthly",
+    country: "United States",
+    registeredAt: "14mo ago",
+  },
+]

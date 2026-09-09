@@ -2,8 +2,17 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import GeneralForm from "./Form/GeneralForm"
+import { useGetProfileQuery } from "@/store/api/profile/profileApis"
+import GeneralTabSkeleton from "./Skeleton/GeneralTabSkeleton"
 
 const GeneralTab = () => {
+  const { data, isLoading } = useGetProfileQuery(undefined)
+
+  const user = data?.data
+
+  const handleSubmit = () => {}
+  if (isLoading) return <GeneralTabSkeleton />
+
   return (
     <Card className="border-border/50 shadow-sm">
       <CardHeader>
@@ -16,7 +25,15 @@ const GeneralTab = () => {
       </CardHeader>
 
       <CardContent>
-        <GeneralForm />
+        <GeneralForm
+          onSubmit={handleSubmit}
+          isLoading={false}
+          initialData={{
+            platformName: user?.name ?? "",
+            supportEmail: user.email ?? "",
+            supportPhone: user.mobile ?? "",
+          }}
+        />
       </CardContent>
     </Card>
   )

@@ -35,3 +35,13 @@ export interface TopTenant {
   activeGuards: number
   alarms: number
 }
+
+export type RecentTenant = {
+  id: string
+  name: string
+  status: "Active" | "Trial" | "Suspended"
+  plan: "Monthly" | "Annual"
+  country: string
+  registeredAt: string
+  avatar: string
+}

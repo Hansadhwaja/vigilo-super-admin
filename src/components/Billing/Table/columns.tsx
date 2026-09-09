@@ -3,6 +3,7 @@ import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { Transaction } from "@/types"
 import { formatDate } from "@/utils/date"
+import { getInitials } from "@/lib/utils/index"
 
 export const columns: ColumnDef<Transaction>[] = [
   {
@@ -21,7 +22,7 @@ export const columns: ColumnDef<Transaction>[] = [
           <CustomAvatar
             src={""}
             alt={tenant.name}
-            fallback={tenant.name}
+            fallback={getInitials(tenant.name)}
             className="h-9 w-9"
           />
 

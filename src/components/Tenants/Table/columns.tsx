@@ -5,6 +5,7 @@ import type { Tenant } from "@/types"
 import { displayValue } from "@/utils"
 import { formatDate } from "@/utils/date"
 import TenantActions from "./TenantsActions"
+import { getInitials } from "@/lib/utils/index"
 
 export const columns: ColumnDef<Tenant>[] = [
   {
@@ -20,6 +21,7 @@ export const columns: ColumnDef<Tenant>[] = [
           <CustomAvatar
             src={avatar}
             alt={name || "Tenant"}
+            fallback={getInitials(name)}
             className="h-10 w-10 rounded-full object-cover"
           />
 

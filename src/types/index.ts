@@ -7,6 +7,7 @@ export * from "./Team"
 export * from "./Support"
 export * from "./Settings"
 export * from "./Profile"
+export * from "./Dashboard"
 
 export type Pagination = {
   total: number
