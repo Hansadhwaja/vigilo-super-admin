@@ -11,12 +11,16 @@ import AnalyticsPage from "@/pages/analytics"
 import SupportPage from "@/pages/support"
 import CMSPage from "@/pages/cms"
 import SettingsPage from "@/pages/settings"
-import GuestRoute from "@/components/Auth/GuestRoute"
-import ProtectedRoute from "@/components/Auth/ProtectedRoute"
 import TenantDetailsPage from "@/pages/tenants/TenantDetailsPage"
 import ProfilePage from "@/pages/profile/ProfilePage"
 
+import GuestRoute from "@/components/Auth/GuestRoute"
+import ProtectedRoute from "@/components/Auth/ProtectedRoute"
+import ErrorPage from "@/pages/error/ErrorPage"
+import NotFoundPage from "@/pages/notfound/NotFoundPage"
+
 export const router = createBrowserRouter([
+  // Guest routes
   {
     element: <GuestRoute />,
     children: [
@@ -26,11 +30,15 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
+  // Protected routes
   {
     element: <ProtectedRoute />,
+    errorElement: <ErrorPage />,
     children: [
       {
         element: <DashboardLayout />,
+        errorElement: <ErrorPage />,
         children: [
           {
             path: "/",
@@ -80,6 +88,12 @@ export const router = createBrowserRouter([
           {
             path: "/profile",
             element: <ProfilePage />,
+          },
+
+          // 404
+          {
+            path: "*",
+            element: <NotFoundPage />,
           },
         ],
       },
