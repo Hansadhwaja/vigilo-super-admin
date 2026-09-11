@@ -1,14 +1,7 @@
-import RevenueByPlanChart from "@/components/Billing/Chart/RevenueByPlanChart"
 import BillingTable from "@/components/Billing/Table"
 import { PageHeader } from "@/components/Common/Header/PageHeader"
 import StatList from "@/components/Common/Stats/StatList"
-import { revenueByPlan } from "@/constants"
-import {
-  DollarSign,
-  Landmark,
-  TrendingDown,
-  Users,
-} from "lucide-react"
+import { DollarSign, Landmark, TrendingDown, Users } from "lucide-react"
 
 const BillingPage = () => {
   const stats = [
@@ -53,7 +46,6 @@ const BillingPage = () => {
       />
       <StatList stats={stats} />
       <BillingTable />
-      <RevenueByPlanChart data={revenueByPlan} />
     </div>
   )
 }

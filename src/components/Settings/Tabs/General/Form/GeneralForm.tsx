@@ -26,19 +26,19 @@ interface Props {
 
 const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
   const defaultValues: GeneralSettingsFormValues = {
-    platformName: initialData?.platformName ?? "",
-    supportEmail: initialData?.supportEmail ?? "",
-    supportPhone: initialData?.supportPhone ?? "",
+    name: initialData?.name ?? "",
+    email: initialData?.email ?? "",
+    mobile: initialData?.mobile ?? "",
   }
   const form = useForm<GeneralSettingsFormValues>({
     resolver: zodResolver(generalSettingsSchema),
+    mode: "onChange",
     defaultValues,
   })
 
   const {
     control,
     handleSubmit,
-    reset,
     formState: { isValid },
   } = form
 
@@ -52,7 +52,7 @@ const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
         <FieldGroup className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <Controller
             control={control}
-            name="platformName"
+            name="name"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Platform Name</FieldLabel>
@@ -70,7 +70,7 @@ const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
 
           <Controller
             control={control}
-            name="supportEmail"
+            name="email"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Support Email</FieldLabel>
@@ -79,6 +79,7 @@ const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
                   <Input
                     {...field}
                     type="email"
+                    disabled={!!initialData}
                     placeholder="support@example.com"
                   />
 
@@ -92,7 +93,7 @@ const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
 
           <Controller
             control={control}
-            name="supportPhone"
+            name="mobile"
             render={({ field, fieldState }) => (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel>Support Phone</FieldLabel>
@@ -110,10 +111,6 @@ const GeneralForm = ({ initialData, onSubmit, isLoading }: Props) => {
         </FieldGroup>
 
         <div className="flex justify-end gap-3 border-t pt-6">
-          <Button type="button" variant="outline" onClick={() => reset()}>
-            Reset
-          </Button>
-
           <Button type="submit" disabled={isLoading || !isValid}>
             Save Changes
           </Button>

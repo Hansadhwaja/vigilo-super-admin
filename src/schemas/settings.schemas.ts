@@ -1,11 +1,12 @@
 import { z } from "zod"
 
 export const generalSettingsSchema = z.object({
-  platformName: z.string().min(1, "Platform name is required."),
-  supportEmail: z.email("Please enter a valid email address."),
-  supportPhone: z.string().min(1, "Support phone is required."),
-  // timezone: z.string().min(1, "Please select a timezone."),
-  // currency: z.string().min(1, "Please select a currency."),
+  name: z.string().min(1, "Platform name is required."),
+  email: z.email("Please enter a valid email address."),
+  mobile: z
+    .string()
+    .min(1, "Mobile number is required.")
+    .max(10, "Enter a valid number"),
 })
 
 export type GeneralSettingsFormValues = z.infer<typeof generalSettingsSchema>
