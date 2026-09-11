@@ -1,4 +1,4 @@
-import type { Enquiry, TeamMember, Tenant, TopTenant } from "@/types"
+import type { Enquiry, TeamMember, Tenant } from "@/types"
 import {
   LayoutDashboard,
   Users,
@@ -152,69 +152,6 @@ export const tenants: Tenant[] = [
     mrr: 1899,
     lastActive: "5 days ago",
     createdAt: "Apr 14, 2025",
-  },
-]
-
-export const topTenants: TopTenant[] = [
-  {
-    id: "tenant-1",
-    rank: 1,
-    company: {
-      name: "Acme Security",
-      avatar: "https://i.pravatar.cc/150?img=1",
-    },
-    plan: "Enterprise",
-    patrolRuns: 1245,
-    activeGuards: 128,
-    alarms: 31,
-  },
-  {
-    id: "tenant-2",
-    rank: 2,
-    company: {
-      name: "ShieldOps",
-      avatar: "https://i.pravatar.cc/150?img=4",
-    },
-    plan: "Business",
-    patrolRuns: 936,
-    activeGuards: 94,
-    alarms: 24,
-  },
-  {
-    id: "tenant-3",
-    rank: 3,
-    company: {
-      name: "Guardian Force",
-      avatar: "https://i.pravatar.cc/150?img=2",
-    },
-    plan: "Pro",
-    patrolRuns: 584,
-    activeGuards: 67,
-    alarms: 18,
-  },
-  {
-    id: "tenant-4",
-    rank: 4,
-    company: {
-      name: "Secure Patrol",
-      avatar: "https://i.pravatar.cc/150?img=5",
-    },
-    plan: "Pro",
-    patrolRuns: 401,
-    activeGuards: 51,
-    alarms: 12,
-  },
-  {
-    id: "tenant-5",
-    rank: 5,
-    company: {
-      name: "Night Watch",
-      avatar: "https://i.pravatar.cc/150?img=3",
-    },
-    plan: "Starter",
-    patrolRuns: 138,
-    activeGuards: 22,
-    alarms: 5,
   },
 ]
 

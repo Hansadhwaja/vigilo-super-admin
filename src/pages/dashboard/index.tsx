@@ -6,7 +6,7 @@ import TenantGrowthChart from "@/components/Dashboard/Charts/TenantGrowthChart"
 import RecentTenantRegistrations from "@/components/Dashboard/RecentTenantRegistrations"
 import DashboardSkeleton from "@/components/Dashboard/Skeleton/DashboardSkeleton"
 import UsageStats from "@/components/Dashboard/UsageStats"
-import { formatCurrency } from "@/lib/utils/index"
+import { formatCurrency } from "@/utils/index"
 import { useGetDashboardContentQuery } from "@/store/api/dashboard/dashboardApis"
 
 import {

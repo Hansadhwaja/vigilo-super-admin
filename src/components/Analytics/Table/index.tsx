@@ -1,11 +1,15 @@
 import { DataTable } from "@/components/ui/data-table"
 import { columns } from "./columns"
-import { topTenants } from "@/constants"
+import type { TopTenant } from "@/types"
 
-const TopTenantTable = () => {
+interface Props {
+  data: TopTenant[]
+}
+
+const TopTenantTable = ({ data }: Props) => {
   return (
     <div>
-      <DataTable columns={columns} data={topTenants} />
+      <DataTable columns={columns} data={data} />
     </div>
   )
 }

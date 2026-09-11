@@ -1,46 +1,45 @@
-
 import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { TopTenant } from "@/types"
 import type { ColumnDef } from "@tanstack/react-table"
 
-
 export const columns: ColumnDef<TopTenant>[] = [
   {
-    accessorKey: "rank",
+    id: "sno",
     header: "#",
+    cell: ({ row }) => row.index + 1,
   },
   {
     accessorKey: "company",
     header: "Tenant",
     cell: ({ row }) => {
-      const company = row.original.company
+      const name = row.original.name
 
       return (
         <div className="flex items-center gap-3">
           <CustomAvatar
-            src={company.avatar}
-            alt={company.name}
+            src={""}
+            alt={name}
             className="h-10 w-10 rounded-full object-cover"
           />
-          <span className="font-medium">{company.name}</span>
+          <span className="font-medium">{name}</span>
         </div>
       )
     },
   },
   {
-    accessorKey: "plan",
+    accessorKey: "planName",
     header: "Plan",
   },
   {
-    accessorKey: "patrolRuns",
+    accessorKey: "patrolRunsCount",
     header: "Patrol Runs",
   },
   {
-    accessorKey: "activeGuards",
+    accessorKey: "activeGuardsCount",
     header: "Active Guards",
   },
   {
-    accessorKey: "alarms",
+    accessorKey: "alarmsCount",
     header: "Alarms",
   },
 ]

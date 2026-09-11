@@ -25,21 +25,17 @@ export type Tenant = {
 
 export interface TopTenant {
   id: string
-  rank: number
-  company: {
-    name: string
-    avatar: string
-  }
-  plan: string
-  patrolRuns: number
-  activeGuards: number
-  alarms: number
+  name: string
+  planName: string
+  patrolRunsCount: number
+  activeGuardsCount: number
+  alarmsCount: number
 }
 
 export type RecentTenant = {
   id: string
   name: string
-  email:string
+  email: string
   createdAt: string
   avatar: string
 }

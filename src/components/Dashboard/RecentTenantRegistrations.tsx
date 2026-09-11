@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/tooltip"
 import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { RecentTenant } from "@/types"
-import { getInitials } from "@/lib/utils/index"
+import { getInitials } from "@/utils/index"
 import { formatDate } from "@/utils/date"
 
 type RecentTenantRegistrationsProps = {

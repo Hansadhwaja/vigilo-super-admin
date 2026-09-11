@@ -1,9 +1,14 @@
-"use client"
-
 import DataFilters from "@/components/Common/Filter/DataFilters"
-import { tenants } from "@/constants"
+import { useGetAllCompaniesQuery } from "@/store/api/tenants/tenantsApi"
+import type { Tenant } from "@/types"
 
 const AnalyticsFilters = () => {
+  const { data } = useGetAllCompaniesQuery({
+    page: 1,
+    limit: 1000,
+  })
+
+  const tenants = data?.data ?? []
   const filters = [
     {
       type: "select" as const,
@@ -30,11 +35,11 @@ const AnalyticsFilters = () => {
     },
     {
       type: "select" as const,
-      key: "tenant",
+      key: "companyAdminId",
       placeholder: "Select tenant",
       options: [
         { label: "All Tenants", value: "all" },
-        ...tenants.map((tenant) => ({
+        ...tenants.map((tenant: Tenant) => ({
           label: tenant.name,
           value: tenant.id,
         })),

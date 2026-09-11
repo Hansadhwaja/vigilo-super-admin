@@ -35,7 +35,12 @@ export const formatDateTime = (value: DateValue): string => {
 export const formatRelativeTime = (value: DateValue): string => {
   const date = parseDate(value)
 
-  return date
-    ? formatDistanceToNow(date, { addSuffix: true })
-    : "-"
+  return date ? formatDistanceToNow(date, { addSuffix: true }) : "-"
+}
+
+export const formatMonth = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  })
 }

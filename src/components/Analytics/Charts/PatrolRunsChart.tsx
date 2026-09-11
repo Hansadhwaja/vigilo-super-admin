@@ -17,36 +17,41 @@ import {
   type ChartConfig,
 } from "@/components/ui/chart"
 
+import type { AnalyticsPatrolRun } from "@/types"
+import { formatMonth } from "@/utils/date"
+
 const chartConfig = {
-  runs: {
+  count: {
     label: "Patrol Runs",
     color: "var(--chart-1)",
   },
 } satisfies ChartConfig
 
 interface Props {
-  data: {
-    date: string
-    runs: number
-  }[]
+  data: AnalyticsPatrolRun[]
 }
 
 export default function PatrolRunsChart({ data }: Props) {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Patrol Runs Completed</CardTitle>
         <CardDescription>Daily, across all tenants</CardDescription>
       </CardHeader>
 
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[350px] w-full">
+      <CardContent className="px-2 sm:px-6">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[280px] w-full sm:h-[320px] lg:h-[350px]"
+        >
           <LineChart
             accessibilityLayer
             data={data}
             margin={{
-              left: 12,
+              top: 8,
               right: 12,
+              bottom: 8,
+              left: 0,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -56,20 +61,31 @@ export default function PatrolRunsChart({ data }: Props) {
               tickLine={false}
               axisLine={false}
               tickMargin={8}
+              tickFormatter={formatMonth}
+              minTickGap={24}
             />
 
-            <YAxis tickLine={false} axisLine={false} tickMargin={8} />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              width={35}
+            />
 
             <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              content={
+                <ChartTooltipContent
+                  labelFormatter={(value) => formatMonth(String(value))}
+                />
+              }
             />
 
             <Line
-              dataKey="runs"
+              dataKey="count"
               type="monotone"
-              stroke="var(--color-runs)"
-              strokeWidth={3}
+              stroke="var(--color-count)"
+              strokeWidth={2.5}
               dot={false}
               activeDot={{ r: 5 }}
             />

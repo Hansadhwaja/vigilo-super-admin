@@ -3,7 +3,7 @@ import CustomAvatar from "@/components/Common/Avatar/CustomAvatar"
 import type { ColumnDef } from "@tanstack/react-table"
 import type { Transaction } from "@/types"
 import { formatDate } from "@/utils/date"
-import { getInitials } from "@/lib/utils/index"
+import { getInitials } from "@/utils/index"
 
 export const columns: ColumnDef<Transaction>[] = [
   {

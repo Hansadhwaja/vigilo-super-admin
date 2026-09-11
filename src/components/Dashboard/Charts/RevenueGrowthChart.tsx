@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/chart"
 
 import type { RevenueGrowthData } from "@/types"
+import { formatMonth } from "@/utils/date"
 
 type RevenueGrowthChartProps = {
   data: RevenueGrowthData[]
@@ -33,10 +34,7 @@ const chartConfig = {
 const RevenueGrowthChart = ({ data }: RevenueGrowthChartProps) => {
   const chartData = data.map((item) => ({
     ...item,
-    month: new Date(item.month).toLocaleDateString("en-US", {
-      month: "short",
-      year: "numeric",
-    }),
+    month: formatMonth(item.month),
   }))
 
   return (

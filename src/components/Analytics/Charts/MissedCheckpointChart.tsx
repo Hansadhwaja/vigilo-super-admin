@@ -12,12 +12,13 @@ import {
 
 import {
   ChartContainer,
-  ChartLegend,
-  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
   type ChartConfig,
 } from "@/components/ui/chart"
+
+import type { AnalyticsMissedCheckpointRate } from "@/types"
+import { formatMonth } from "@/utils/date"
 
 const chartConfig = {
   rate: {
@@ -27,15 +28,12 @@ const chartConfig = {
 } satisfies ChartConfig
 
 interface Props {
-  data: {
-    label: string
-    rate: number
-  }[]
+  data: AnalyticsMissedCheckpointRate[]
 }
 
 export default function MissedCheckpointChart({ data }: Props) {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle>Missed Checkpoint Rate</CardTitle>
         <CardDescription>
@@ -43,24 +41,58 @@ export default function MissedCheckpointChart({ data }: Props) {
         </CardDescription>
       </CardHeader>
 
-      <CardContent>
-        <ChartContainer config={chartConfig} className="h-[350px] w-full">
-          <LineChart data={data} accessibilityLayer>
+      <CardContent className="px-2 sm:px-6">
+        <ChartContainer
+          config={chartConfig}
+          className="aspect-auto h-[280px] w-full sm:h-[320px] lg:h-[350px]"
+        >
+          <LineChart
+            accessibilityLayer
+            data={data}
+            margin={{
+              top: 16,
+              right: 12,
+              bottom: 8,
+              left: 0,
+            }}
+          >
             <CartesianGrid vertical={false} />
 
-            <XAxis dataKey="label" tickLine={false} axisLine={false} />
+            <XAxis
+              dataKey="date"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              tickFormatter={formatMonth}
+              minTickGap={24}
+            />
 
-            <YAxis unit="%" tickLine={false} axisLine={false} />
+            <YAxis
+              domain={[0, 100]}
+              padding={{ top: 10, bottom: 0 }}
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              width={45}
+              tickFormatter={(value) => `${value}%`}
+            />
 
-            <ChartTooltip content={<ChartTooltipContent indicator="line" />} />
-
-            <ChartLegend content={<ChartLegendContent />} />
+            <ChartTooltip
+              cursor={false}
+              content={
+                <ChartTooltipContent
+                  indicator="line"
+                  formatter={(value) => [`${value}%`, "Missed Rate"]}
+                  labelFormatter={(value) => formatMonth(String(value))}
+                />
+              }
+            />
 
             <Line
               dataKey="rate"
               type="monotone"
               stroke="var(--color-rate)"
-              strokeWidth={3}
+              strokeWidth={2.5}
               dot={false}
               activeDot={{ r: 5 }}
             />

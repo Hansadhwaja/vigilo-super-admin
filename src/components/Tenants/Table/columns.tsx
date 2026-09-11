@@ -5,7 +5,7 @@ import type { Tenant } from "@/types"
 import { displayValue } from "@/utils"
 import { formatDate } from "@/utils/date"
 import TenantActions from "./TenantsActions"
-import { getInitials } from "@/lib/utils/index"
+import { getInitials } from "@/utils/index"
 
 export const columns: ColumnDef<Tenant>[] = [
   {

@@ -8,6 +8,7 @@ export * from "./Support"
 export * from "./Settings"
 export * from "./Profile"
 export * from "./Dashboard"
+export * from "./Analytics"
 
 export type Pagination = {
   total: number
