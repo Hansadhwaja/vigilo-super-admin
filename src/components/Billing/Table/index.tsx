@@ -7,21 +7,15 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { columns } from "./columns"
-import { useGetAllTransactionsQuery } from "@/store/api/billing/billingApis"
-import useQueryParams from "@/hooks/useQueryParams"
+import type { Pagination, Transaction } from "@/types"
 
-const BillingTable = () => {
-  const { getParam } = useQueryParams()
-  const page = Number(getParam("page") ?? 1)
-  const limit = Number(getParam("limit") ?? 10)
+interface Props {
+  transactions: Transaction[]
+  isLoading: boolean
+  pagination: Pagination
+}
 
-  const { data, isLoading } = useGetAllTransactionsQuery({
-    page,
-    limit,
-  })
-
-  const transactions = data?.data ?? []
-
+const BillingTable = ({ transactions, isLoading, pagination }: Props) => {
   return (
     <Card>
       <CardHeader>
@@ -36,6 +30,7 @@ const BillingTable = () => {
           columns={columns}
           data={transactions}
           isLoading={isLoading}
+          pagination={pagination}
         />
       </CardContent>
     </Card>

@@ -39,11 +39,6 @@ export const columns: ColumnDef<Transaction>[] = [
     ),
   },
   {
-    accessorKey: "plan",
-    header: "Plan",
-    cell: () => "-",
-  },
-  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
@@ -66,8 +61,8 @@ export const columns: ColumnDef<Transaction>[] = [
     },
   },
   {
-    accessorKey: "method",
-    header: "Method",
-    cell: () => "-",
+    accessorKey: "plan",
+    header: "Plan",
+    cell: ({ row }) => row.original?.plan?.name ?? "-",
   },
 ]

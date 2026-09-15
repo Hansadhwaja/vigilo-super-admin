@@ -22,6 +22,10 @@ export type Transaction = {
     email: string
     role: string
   }
+  plan: {
+    name: string
+    id: string
+  }
 }
 
 export type TransactionsResponse = {

@@ -34,17 +34,6 @@ const ProfileHeader = ({ user }: Props) => {
                   Verified
                 </Badge>
               )}
-
-              <Badge
-                className="capitalize"
-                variant={
-                  user?.subscriptionStatus === "active"
-                    ? "default"
-                    : "destructive"
-                }
-              >
-                {user?.subscriptionStatus}
-              </Badge>
             </div>
           </div>
         </div>

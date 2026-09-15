@@ -3,8 +3,6 @@ import { useGetProfileQuery } from "@/store/api/profile/profileApis"
 import { PageHeader } from "@/components/Common/Header/PageHeader"
 import ProfileHeader from "@/components/Profile/ProfileHeader"
 import PersonalDetails from "@/components/Profile/PersonalDetails"
-import SubscriptionDetails from "@/components/Profile/SubscriptionDetails"
-import AccountDetails from "@/components/Profile/AccountDetails"
 
 const ProfilePage = () => {
   const { data, isLoading } = useGetProfileQuery(undefined)
@@ -22,13 +20,7 @@ const ProfilePage = () => {
 
       <div className="space-y-6">
         <ProfileHeader user={user} />
-
-        <div className="grid gap-6 lg:grid-cols-2">
-          <PersonalDetails user={user} />
-          <SubscriptionDetails user={user} />
-        </div>
-
-        <AccountDetails user={user} />
+        <PersonalDetails user={user} />
       </div>
     </>
   )
