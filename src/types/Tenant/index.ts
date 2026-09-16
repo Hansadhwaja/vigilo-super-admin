@@ -1,26 +1,48 @@
 export type Tenant = {
   id: string
-  avatar: string
   name: string
   email: string
   mobile: string
   address: string
-  subdomain: string
-  plan: {
-    amount: number
-    currency: string
-    description: string
-    id: string
-    interval: string
-    name: string
-  } | null
-  status: string
-  guards: number
-  vehicles: number
-  runs: number
-  mrr: number
-  lastActive: string
   createdAt: string
+
+  planId: string | null
+
+  subscriptionStatus: string
+  subscriptionStart: string | null
+  subscriptionEnd: string | null
+  cancelAtPeriodEnd: boolean
+
+  plan: {
+    id: string
+    name: string
+    amount: number
+    interval: string
+    features: string[]
+    isActive: boolean
+  } | null
+
+  activePlan: {
+    id: string
+    name: string
+    features: string[]
+    isActive: boolean
+    status: string
+    startDate: string
+    endDate: string
+    cancelAtPeriodEnd: boolean
+  } | null
+
+  stats: {
+    totalGuards: number
+    totalUsers: number
+    totalAdmins: number
+    totalVehicles: number
+    activeVehicles: number
+    totalPatrolRuns: number
+    activePatrolRuns: number
+    totalMembers: number
+  }
 }
 
 export interface TopTenant {

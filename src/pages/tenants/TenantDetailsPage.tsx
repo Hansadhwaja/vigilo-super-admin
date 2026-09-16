@@ -23,7 +23,7 @@ const TenantDetailsPage = () => {
         backTo="/tenants"
       />
       <TenantHeader tenant={tenantDetails} />
-      <TenantDetailsTabs />
+      <TenantDetailsTabs tenant={tenantDetails} />
     </div>
   )
 }

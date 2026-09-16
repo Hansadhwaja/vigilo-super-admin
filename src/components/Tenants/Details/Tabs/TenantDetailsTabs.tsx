@@ -1,29 +1,30 @@
 import TabList, { type TabItem } from "@/components/Common/Tabs/TabList"
+import OverviewTab from "./Overview/OverviewTab"
+import type { Tenant } from "@/types"
+import PlanTab from "./Plan/PlanTab"
 
-const tabs: TabItem[] = [
-  {
-    value: "overview",
-    label: "Overview",
-    content: <div>Overview</div>,
-  },
-  {
-    value: "plan-billing",
-    label: "Plan & Billing",
-    content: <div>Plan & Billing</div>,
-  },
-  {
-    value: "users",
-    label: "Users",
-    content: <div>Users</div>,
-  },
-  {
-    value: "notes",
-    label: "Notes",
-    content: <div>Notes</div>,
-  },
-]
+interface Props {
+  tenant: Tenant
+}
 
-const TenantDetailsTabs = () => {
+const TenantDetailsTabs = ({ tenant }: Props) => {
+  const tabs: TabItem[] = [
+    {
+      value: "overview",
+      label: "Overview",
+      content: <OverviewTab tenant={tenant} />,
+    },
+    {
+      value: "plan-billing",
+      label: "Plan & Billing",
+      content: <PlanTab tenant={tenant} />,
+    },
+    {
+      value: "users",
+      label: "Users",
+      content: <div>Users</div>,
+    },
+  ]
   return <TabList tabs={tabs} defaultValue="overview" />
 }
 
