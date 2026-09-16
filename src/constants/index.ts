@@ -1,4 +1,4 @@
-import type { Enquiry } from "@/types"
+import type { Enquiry, TeamMember } from "@/types"
 import {
   LayoutDashboard,
   Users,
@@ -66,6 +66,75 @@ export const QUERY_KEYS = {
   STATUS: "status",
   SORT: "sort",
 } as const
+
+export const teamMembers: TeamMember[] = [
+  {
+    name: {
+      avatar: "",
+      initials: "SM",
+      name: "Sophia Mendez",
+      email: "sophia@vigilo.com",
+    },
+    role: "Super Admin",
+    status: "Active",
+    lastLogin: "2h ago",
+  },
+  {
+    name: {
+      avatar: "",
+      initials: "JP",
+      name: "James Park",
+      email: "james@vigilo.com",
+    },
+    role: "Billing Admin",
+    status: "Active",
+    lastLogin: "7h ago",
+  },
+  {
+    name: {
+      avatar: "",
+      initials: "RP",
+      name: "Raj Patel",
+      email: "raj@vigilo.com",
+    },
+    role: "Support Agent",
+    status: "Active",
+    lastLogin: "1d ago",
+  },
+  {
+    name: {
+      avatar: "",
+      initials: "MA",
+      name: "Mira Andersson",
+      email: "mira@vigilo.com",
+    },
+    role: "Support Agent",
+    status: "Active",
+    lastLogin: "2d ago",
+  },
+  {
+    name: {
+      avatar: "",
+      initials: "DK",
+      name: "Daniel Kim",
+      email: "daniel@vigilo.com",
+    },
+    role: "Billing Admin",
+    status: "Invited",
+    lastLogin: "—",
+  },
+  {
+    name: {
+      avatar: "",
+      initials: "AB",
+      name: "Aiyana Brooks",
+      email: "aiyana@vigilo.com",
+    },
+    role: "Support Agent",
+    status: "Disabled",
+    lastLogin: "4mo ago",
+  },
+]
 
 export const roles = [
   {
