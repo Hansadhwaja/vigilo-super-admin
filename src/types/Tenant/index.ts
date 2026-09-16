@@ -2,11 +2,19 @@ export type Tenant = {
   id: string
   name: string
   email: string
+  avatar: string
   mobile: string
   address: string
   createdAt: string
-
+  subdomain: string
   planId: string | null
+
+  status: string
+  guards: number
+  vehicles: number
+  runs: number
+  mrr: number
+  lastActive: string
 
   subscriptionStatus: string
   subscriptionStart: string | null
@@ -14,6 +22,8 @@ export type Tenant = {
   cancelAtPeriodEnd: boolean
 
   plan: {
+    currency: string
+    description: string
     id: string
     name: string
     amount: number
