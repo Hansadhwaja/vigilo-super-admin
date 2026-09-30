@@ -28,7 +28,7 @@ const SupportPage = () => {
 
   const enquiries = data?.data ?? []
   const pagination = data?.pagination ?? {
-    total: data.count,
+    total: data?.count ?? 0,
     page,
     limit,
     totalPages: 1,
