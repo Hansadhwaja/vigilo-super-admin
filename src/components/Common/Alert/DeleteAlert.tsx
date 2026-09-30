@@ -1,5 +1,4 @@
 import Loader from "@/components/Common/Loader"
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,11 +8,12 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
+import type { ReactNode } from "react"
 
 interface DeleteAlertProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  trigger: ReactNode
   onConfirm: () => void | Promise<void>
   title?: string
   description?: string
@@ -23,8 +23,7 @@ interface DeleteAlertProps {
 }
 
 const DeleteAlert = ({
-  open,
-  onOpenChange,
+  trigger,
   onConfirm,
   title = "Delete Item",
   description = "This action cannot be undone. This will permanently delete this item.",
@@ -33,7 +32,9 @@ const DeleteAlert = ({
   isLoading = false,
 }: DeleteAlertProps) => {
   return (
-    <AlertDialog open={open} onOpenChange={onOpenChange}>
+    <AlertDialog>
+      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
+
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle className="text-destructive">
@@ -49,13 +50,12 @@ const DeleteAlert = ({
           </AlertDialogCancel>
 
           <AlertDialogAction
-            variant={"destructive"}
+            variant="destructive"
             onClick={(e) => {
               e.preventDefault()
               void onConfirm()
             }}
             disabled={isLoading}
-            className="text-destructive-foreground bg-destructive hover:bg-destructive/90"
           >
             {isLoading ? <Loader /> : confirmText}
           </AlertDialogAction>

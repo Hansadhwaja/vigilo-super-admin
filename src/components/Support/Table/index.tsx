@@ -1,15 +1,20 @@
-import { enquiries } from "@/constants";
-import { DataTable } from "@/components/ui/data-table";
+import { DataTable } from "@/components/ui/data-table"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { columns } from "./columns";
+} from "@/components/ui/card"
+import { columns } from "./columns"
+import type { Pagination, Ticket } from "@/types"
 
-const SupportTable = () => {
+interface Props {
+  enquiries: Ticket[]
+  pagination?: Pagination
+}
+
+const SupportTable = ({ enquiries, pagination }: Props) => {
   return (
     <Card>
       <CardHeader>
@@ -20,10 +25,10 @@ const SupportTable = () => {
       </CardHeader>
 
       <CardContent>
-        <DataTable columns={columns} data={enquiries} />
+        <DataTable columns={columns} data={enquiries} pagination={pagination} />
       </CardContent>
     </Card>
-  );
-};
+  )
+}
 
-export default SupportTable;
+export default SupportTable

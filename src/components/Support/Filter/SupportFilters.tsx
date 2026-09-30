@@ -1,7 +1,6 @@
 "use client"
 
 import DataFilters from "@/components/Common/Filter/DataFilters"
-import { Button } from "@/components/ui/button"
 
 const SupportFilters = () => {
   const filters = [
@@ -22,6 +21,10 @@ const SupportFilters = () => {
           label: "Guard",
           value: "guard",
         },
+        {
+          label: "Website",
+          value: "website",
+        },
       ],
     },
     {
@@ -39,7 +42,7 @@ const SupportFilters = () => {
         },
         {
           label: "In Progress",
-          value: "in_progress",
+          value: "inprogress",
         },
         {
           label: "Resolved",
@@ -56,7 +59,6 @@ const SupportFilters = () => {
         placeholder: "Search enquiries...",
       }}
       filters={filters}
-      actions={<Button>Add Query</Button>}
     />
   )
 }
