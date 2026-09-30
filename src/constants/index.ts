@@ -1,4 +1,4 @@
-import type { Enquiry, TeamMember } from "@/types"
+import type { TeamMember } from "@/types"
 import {
   LayoutDashboard,
   Users,
@@ -182,48 +182,6 @@ export const roles = [
   },
 ]
 
-export const enquiries: Enquiry[] = [
-  {
-    enquiryId: "ENQ-001",
-    senderType: "Company",
-    name: "Allied Security",
-    subject: "Billing Issue",
-    message:
-      "We were charged twice for the last billing cycle. Please review our account and process a refund.",
-    status: "Open",
-    createdDate: "Jun 12, 2026",
-  },
-  {
-    enquiryId: "ENQ-002",
-    senderType: "Guard",
-    name: "Sarah Johnson",
-    subject: "Login Issues",
-    message:
-      "I am unable to log into my account since yesterday. The app keeps showing an invalid credentials error.",
-    status: "In Progress",
-    createdDate: "Jun 13, 2026",
-  },
-  {
-    enquiryId: "ENQ-003",
-    senderType: "Company",
-    name: "Metro Patrol Services",
-    subject: "Feature Request",
-    message:
-      "Would it be possible to add bulk upload for guards via CSV? This would save our admin team significant time.",
-    status: "Resolved",
-    createdDate: "Jun 10, 2026",
-  },
-  {
-    enquiryId: "ENQ-004",
-    senderType: "Guard",
-    name: "Mike Davis",
-    subject: "Payment Delay",
-    message:
-      "My salary for March has not been processed yet. I have already informed my supervisor.",
-    status: "Open",
-    createdDate: "Jun 15, 2026",
-  },
-]
 
 //Plans
 export const billingIntervals = [
