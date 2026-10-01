@@ -28,10 +28,17 @@ const SupportPage = () => {
 
   const enquiries = data?.data ?? []
   const pagination = data?.pagination ?? {
-    total: data?.count ?? 0,
+    totalItems: data?.count ?? 0,
     page,
     limit,
     totalPages: 1,
+  }
+
+  const summary = data?.summary ?? {
+    total: 0,
+    open: 0,
+    inprogress: 0,
+    resolved: 0,
   }
 
   if (isLoading) return <Loader />
@@ -39,35 +46,31 @@ const SupportPage = () => {
   const stats = [
     {
       title: "Total Enquiries",
-      value: 248,
+      value: summary?.total,
       subtitle: "All enquiries received",
       icon: Inbox,
       color: "bg-blue-500/10 text-blue-500",
-      trend: 12,
     },
     {
       title: "Open",
-      value: 34,
+      value: summary?.open,
       subtitle: "Awaiting response",
       icon: CircleAlert,
       color: "bg-red-500/10 text-red-500",
-      trend: 5,
     },
     {
       title: "In Progress",
-      value: 18,
+      value: summary?.inprogress,
       subtitle: "Currently being handled",
       icon: Clock3,
       color: "bg-amber-500/10 text-amber-500",
-      trend: -2,
     },
     {
       title: "Resolved",
-      value: 196,
+      value: summary?.resolved,
       subtitle: "Successfully resolved",
       icon: CheckCircle2,
       color: "bg-green-500/10 text-green-500",
-      trend: 18,
     },
   ]
   return (
@@ -80,7 +83,10 @@ const SupportPage = () => {
       <Suspense fallback={null}>
         <SupportFilters />
       </Suspense>
-      <SupportTable enquiries={enquiries} pagination={pagination} />
+      <SupportTable
+        enquiries={enquiries}
+        pagination={{ ...pagination, total: pagination.totalItems }}
+      />
     </div>
   )
 }

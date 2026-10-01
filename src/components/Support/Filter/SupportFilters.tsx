@@ -6,7 +6,7 @@ const SupportFilters = () => {
   const filters = [
     {
       type: "select" as const,
-      key: "sender",
+      key: "senderType",
       placeholder: "All Senders",
       options: [
         {
